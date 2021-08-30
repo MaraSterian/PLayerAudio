@@ -1,0 +1,39 @@
+.fileInput {
+    width: 50%;
+    height: 40%;
+    position: absolute;
+    border: 4px dashed #000;
+    background-image: url("upload-v2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 64px 64px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    filter: alpha(opacity=50);
+    -khtml-opacity: 0.5;
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    text-align: center;
+}
+
+.fileInput:hover,
+.fileInput.dragging,
+.fileInput.uploading {
+    filter: alpha(opacity=100);
+    -khtml-opacity: 1;
+    -moz-opacity: 1;
+    opacity: 1;
+}
+
+.fileInput input {
+    width: 400%;
+    height: 100%;
+    margin-left: -300%;
+    border: none;
+    cursor: pointer;
+}
+
+.fileInput input:focus {
+    outline: none;
+}
