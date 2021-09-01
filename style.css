@@ -1,3 +1,111 @@
+.title {
+    width: 100%;
+    font-weight: 600;
+}
+
+.waveform {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+input[type='range'] {
+    vertical-align: middle;
+}
+
+
+
+i.fa-volume-up {
+    margin-top: 10px;
+    margin-right: 8px;
+    right: 0;
+}
+.volume-slider {
+    margin-top: -5px;
+}
+
+.prbIcon {
+    margin-top: 40px;
+    margin-right: 12px;
+}
+
+.pbr-slider {
+    margin-top: -20px;
+}
+
+.pbr-value {
+    margin-top: -40px;
+}
+
+input:focus{
+    outline: none;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 700px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+
+input[type=range]::-ms-track {
+    width: 300px;
+    height: 5px;
+
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}
+
 .fileInput {
     width: 50%;
     height: 40%;
@@ -36,4 +144,54 @@
 
 .fileInput input:focus {
     outline: none;
+}
+
+.button {
+    border-radius: 12px;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: silver;
+    color: black;
+}
+
+.button:active {
+    background-color: darkcyan;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid #ddd;
+}
+
+ul li {
+    padding: 8px 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+ul li:last-child {
+    border-bottom: none
+}
+
+.float {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.playlistBox {
+    width: 47%;
+    float: right;
+    padding: 20px;
+
+}
+
+.fileInput {
+    width: 47%;
+    float: left;
+    padding: 20px;
+
 }

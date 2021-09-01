@@ -10,19 +10,39 @@ const pbrValue = document.querySelector("#pbr-value");
 const currentTime = document.querySelector("#currentTime");
 const totalDuration = document.querySelector("#totalDuration");
 
+let volume;
+
 
 //var RegionsPlugin = window.WaveSurfer.regions;
 
 
 const initializeWavesurfer = () => {
     return WaveSurfer.create({
-        container: "#waveform",
+        container: document.querySelector("#waveform"),
         responsive: true,
         height: 80,
         //width: 50,
         waveColor: "indigo",
         progressColor: "purple",
         cursorColor: "navy",
+
+        /*plugins: [
+            WaveSurfer.markers.create({
+                markers: [
+                    {
+                        time: 5.5,
+                        label: "V1",
+                        color: '#ff990a'
+                    },
+                    {
+                        time: 10,
+                        label: "V2",
+                        color: '#00ffcc',
+                        position: 'top'
+                    }
+                ]
+            })
+        ]*/
 
         /*backend: 'MediaElement',
         plugins: [
@@ -61,35 +81,47 @@ const togglePlay = () => {
     wavesurfer.playPause();
     const isPlaying = wavesurfer.isPlaying();
     if (isPlaying) {
-        playButton.innerHTML='<i class="fas fa-pause"></i>';
+        playButton.innerHTML='<i class="fas fa-pause fa-2x"></i>';
     } else {
-        playButton.innerHTML='<i class="fas fa-play fa"></i>';
+        playButton.innerHTML='<i class="fas fa-play fa-2x"></i>';
     }
 }
 
 const stopPlay = () => {
     wavesurfer.stop();
-    playButton.innerHTML='<i class="fas fa-play fa"></i>';
+    playButton.innerHTML='<i class="fas fa-play fa-2x"></i>';
 }
 
 const skipForward = () => {
     wavesurfer.skip(+10);
 }
 
+const volumeIconChange = e => {
+    if(volume = 0) volumeIcon.innerHTML = '<i class="fas fa-volume-mute fa"></i>';
+    else if (volume > 0 && volume < 40) volumeIcon.innerHTML = '<i class="fas fa-volume-down fa"></i>';
+    else volumeIcon.innerHTML = '<i class="fas fa-volume-up fa"></i>';
+}
+
 const handleVolumeChange = e => {
-    const volume = e.target.value / 100;
+    volume = e.target.value / 100;
     wavesurfer.setVolume(volume);
     localStorage.setItem("audio-player-volume", volume);
 }
 
 const setVolumeFromLocalStorage = () => {
-    const volume = localStorage.getItem("audio-player-volume") * 100 || 50;
+    volume = 50;
+    //const volume = localStorage.getItem("audio-player-volume") * 100 || 50;
     volumeSlider.value = volume;
+}
+
+function outputUpdateVol(vol) {
+    document.querySelector('#volumeOutput').value = vol + "%";
 }
 
 const handlePbrChange = e => {
     const pbr = e.target.value;
     wavesurfer.setPlaybackRate(pbr);
+    pbrValue.innerHTML = pbr;
     localStorage.setItem("audio-player-pbr", pbr);
 }
 
@@ -97,6 +129,10 @@ const setPbrFromLocalStorage = () => {
     const pbr = localStorage.getItem("audio-player-prb")  || 1;
     pbrSlider.value = pbr;
     pbrValue.innerHTML = pbr;
+}
+
+function outputUpdatePbr(pbRate) {
+    document.querySelector('#pbrOutput').value = pbRate + "x";
 }
 
 const formatTimecode = seconds => {
@@ -115,6 +151,8 @@ const toggleMute = () => {
     }
 }
 
+
+
 const wavesurfer = initializeWavesurfer();
 wavesurfer.load("WhoWillYouLove.mp3");
 
@@ -129,6 +167,7 @@ window.addEventListener("resize", function(){
 
 document.getElementById("fileinput").addEventListener('change', function(e){
     var file = this.files[0];
+    stopPlay();
 
     if (file) {
         var reader = new FileReader();
@@ -154,7 +193,7 @@ document.getElementById("fileinput").addEventListener('change', function(e){
 var RegionsPlugin = window.WaveSurfer.regions;
 
 wavesurfer.addPlugin(RegionsPlugin.create({
-    container: '#waveform',
+    container: document.querySelector('#waveform'),
     regionsMinLength: 2,
     regions: [
         {
@@ -177,6 +216,8 @@ wavesurfer.addPlugin(RegionsPlugin.create({
 })).initPlugin('regions');
 
 window.addEventListener("load", setVolumeFromLocalStorage);
+volumeIcon.addEventListener("input", volumeIconChange);
+//window.addEventListener("load", setPbrFromLocalStorage);
 fastRewind.addEventListener("click", skipBackward);
 playButton.addEventListener("click", togglePlay);
 stopButton.addEventListener("click", stopPlay);
