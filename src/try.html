@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/7e3279168b.js" crossorigin="anonymous"></script>
+  <title>Player Audio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="playlist.js"></script>
+  <script src="download.js"></script>
+  <script src="https://unpkg.com/wavesurfer.js@5.2.0/dist/wavesurfer.js"></script>
+  <!--script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.js"></script-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/5.2.0/plugin/wavesurfer.regions.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.0-beta02/plugin/wavesurfer.playlist.js"></script>
+
+  </head>
+<body>
+<!--main class="container"-->
+  <div align="right"id="login">
+    <a href="#" class="w3-button w3-black w3-round-xlarge">Link Button</a>
+    <a href="#" class="w3-button w3-black w3-round-xlarge">Link Button</a>
+  </div>
+  <h1 align="center">Player Audio</h1>
+  <p align="center" class="title">Who Will You Love - Dead Heart Bloom</p>
+  <div align="center" class="timecode">
+    <span id="currentTime">00:00:00</span>
+    <span>/</span>
+    <span id="totalDuration">00:00:00</span>
+  </div>
+  <div class="audio-player">
+    <div id="waveform" class="waveform"></div>
+    <div align="center" class="buttons">
+      <button class="button" id="skipPrevious" type="button" title="Skip Previous">
+        <i class="fas fa-step-backward fa-2x"></i>
+      </button>
+      <button class="button" id="fastRewind" type="button" title="10 seconds rewind">
+        <i class="fas fa-backward fa-2x"></i>
+      </button>
+      <button class="button" id="playButton" type="button" title="Play, Pause or Resume">
+        <i class="fas fa-play fa-2x"></i>
+      </button>
+      <button class="button" id="stop" type="button" title="Stop">
+        <i class="fas fa-stop fa-2x"></i>
+      </button>
+      <button class="button" id="fastForward" type="button" title="10 seconds forward">
+        <i class="fas fa-forward fa-2x"></i>
+      </button>
+      <button class="button" id="skipNext" type="button" title="Skip Next">
+        <i class="fas fa-step-forward fa-2x"></i>
+      </button>
+    </div>
+    <div class="player-body">
+
+
+      <div id="timeline" class="timeline"></div>
+      <div class="controls">
+        <div align="center" class="volume">
+          <i id="volumeIcon" class="fas fa-volume-up fa-1.5x"></i>
+          <input id="volumeSlider" class="volume-slider" type="range" name="volume-slider" min="0" max="100" value="50" oninput="outputUpdateVol(value)"/>
+          <output for="volumeSlider" id="volumeOutput">50%</output>
+        </div>
+        <div align="center" class="playbackRate">
+          <label class="prbIcon"><img src="pbr.png" style="width:2%; height:2%"> </label>
+          <input id="pbrSlider" class="pbr-slider" type="range" name="pbr-slider" min="0" max="3" step="0.25" value="1" oninput="outputUpdatePbr(value)"/>
+          <output for="pbrSlider" id="pbrOutput">1.0x</output>
+          <!--span class="pbr-value">1.0x</span-->
+        </div>
+
+      </div>
+    </div>
+  </div>
+<form action="upload.php" method="POST" enctype="multipart/form-data">
+  <input type="file" name="audioFile"/>
+  <input type="submit" value="Upload Audio" name="save_audio"/>
+</form>
+
+  <div class="float">
+    <div id="playlistBox" class="playlistBox">
+      <button class="loadM3U">
+        Load Playlist
+      </button>
+      <ul class="playlistbox">
+        <li>Petula Clark - Down Town</li>
+        <li>Petula Clark - The Cat in the Window</li>
+        <li>Muse - Uprising</li>
+        <li>Dead Heart Bloom - Who Will You Love</li>
+      </ul>
+    </div>
+    <div class="fileInput">
+      <input type="file" id="fileinput"/>
+    </div>
+  </div>
+
+
+
+  <!--input type="file" name="file" /-->
+  <!--div id="drop-area">
+    <form class="my-form">
+      <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+      <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+      <label class="button" for="fileElem">Select some files</label>
+    </form>
+  </div-->
+<!--/main-->
+<!--script src="https://unpkg.com/wavesurfer.js@5.2.0/dist/wavesurfer.js"></script-->
+<script src="script.js"></script>
+<!--script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/5.2.0/plugin/wavesurfer.regions.js"></script-->
+</body>
+</html>
