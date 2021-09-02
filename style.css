@@ -12,7 +12,11 @@ input[type='range'] {
     vertical-align: middle;
 }
 
-
+i.fa-volume-mute {
+    margin-top: 10px;
+    margin-right: 8px;
+    right: 0;
+}
 
 i.fa-volume-up {
     margin-top: 10px;
@@ -194,4 +198,8 @@ ul li:last-child {
     float: left;
     padding: 20px;
 
+}
+
+.w3-button w3-black w3-round-xlarge {
+    margin-top: 10px;
 }
